@@ -20,19 +20,19 @@ data <- read.csv("./Data/household_power_consumption.txt", header=T, sep=';', na
                       , check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
 data$Date <- as.Date(data_full$Date, format="%d/%m/%Y")
 
-## Subsetting the data: subdata
+# Subsetting the data: subdata
 subdata <- subset(data_full, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
 rm(subdata)
 
-## Converting dates
+# Converting dates
 datetime <- paste(as.Date(subdata$Date), subdata$Time)
 subdata$Datetime <- as.POSIXct(datetime)
 
-## Creatint the plot: plot1
+# Creatint the plot: plot1
 hist(subdata$Global_active_power, main="Global Active Power", 
      xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
 
-## Saving the plot to a file: plot1.png
+# Saving the plot to a file: plot1.png
 dev.copy(png, file="plot1", height=480, width=480)
 dev.off()
 
